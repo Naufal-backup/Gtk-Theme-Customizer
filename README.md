@@ -1,5 +1,7 @@
 # GTK Theme Customizer
 
+**🇮🇩 Bahasa Indonesia** | [🇬🇧 English](README.en.md)
+
 GNOME Shell Extension untuk mengkustomisasi tombol window GTK 3 dan GTK 4 dengan kontrol penuh atas warna, ukuran, dan border radius.
 
 ## Fitur
