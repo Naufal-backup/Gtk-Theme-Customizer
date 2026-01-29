@@ -117,6 +117,10 @@ https://github.com/naufal453/Gtk-Theme-Customizer
 
 Pull requests are welcome! Please open an issue first to discuss major changes.
 
+## Support Me
+
+https://saweria.co/Naufal453
+
 ## Author
 
 Developed by [naufal453](https://github.com/naufal453)
