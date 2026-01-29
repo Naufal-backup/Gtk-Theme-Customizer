@@ -1,0 +1,167 @@
+# Indonesian translations for gtk-theme-customizer package.
+# Copyright (C) 2026
+# This file is distributed under the same license as the gtk-theme-customizer package.
+# naufal453, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gtk-theme-customizer\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-01-29 12:00+0000\n"
+"PO-Revision-Date: 2026-01-29 12:00+0700\n"
+"Last-Translator: naufal453 <naufal453@github.com>\n"
+"Language-Team: Indonesian\n"
+"Language: id\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Settings"
+msgstr "Pengaturan"
+
+msgid "Button Size"
+msgstr "Ukuran Tombol"
+
+msgid "Configure button size and spacing"
+msgstr "Konfigurasi ukuran dan jarak tombol window"
+
+msgid "Icon Size"
+msgstr "Ukuran Ikon"
+
+msgid "Icon size in pixels"
+msgstr "Ukuran ikon dalam piksel"
+
+msgid "Border Radius"
+msgstr "Border Radius"
+
+msgid "Button corner roundness (0 = square, 999 = fully rounded)"
+msgstr "Kelengkungan sudut tombol (0 = kotak, 999 = bulat penuh)"
+
+msgid "Button Padding"
+msgstr "Padding Tombol"
+
+msgid "Inner space around icon"
+msgstr "Ruang dalam tombol di sekitar ikon"
+
+msgid "Button Margin"
+msgstr "Margin Tombol"
+
+msgid "Default Button Background"
+msgstr "Background Tombol Default"
+
+msgid "Default background color for all buttons"
+msgstr "Warna background default untuk semua tombol"
+
+msgid "GTK 3 Settings"
+msgstr "Pengaturan GTK 3"
+
+msgid "Specific configuration for GTK 3 applications"
+msgstr "Konfigurasi khusus untuk aplikasi GTK 3"
+
+msgid "Button Min Height"
+msgstr "Min Height Tombol"
+
+msgid "Minimum height for GTK 3 buttons"
+msgstr "Tinggi minimum tombol GTK 3"
+
+msgid "Button Min Width"
+msgstr "Min Width Tombol"
+
+msgid "Minimum width for GTK 3 buttons"
+msgstr "Lebar minimum tombol GTK 3"
+
+msgid "Margin Top"
+msgstr "Margin Top"
+
+msgid "Top margin for GTK 3 buttons"
+msgstr "Margin atas tombol GTK 3"
+
+msgid "Margin Bottom"
+msgstr "Margin Bottom"
+
+msgid "Bottom margin for GTK 3 buttons"
+msgstr "Margin bawah tombol GTK 3"
+
+msgid "Margin Left"
+msgstr "Margin Left"
+
+msgid "Left margin for GTK 3 buttons"
+msgstr "Margin kiri tombol GTK 3"
+
+msgid "Margin Right"
+msgstr "Margin Right"
+
+msgid "Right margin for GTK 3 buttons"
+msgstr "Margin kanan tombol GTK 3"
+
+msgid "Icon Scale"
+msgstr "Skala Ikon"
+
+msgid "Scale factor for GTK 3 icons (1.0 = normal)"
+msgstr "Faktor skala untuk ikon GTK 3 (1.0 = normal)"
+
+msgid "Close Button"
+msgstr "Tombol Close"
+
+msgid "Color and opacity for close button"
+msgstr "Warna dan opacity untuk tombol close"
+
+msgid "Close Color"
+msgstr "Warna Close"
+
+msgid "Main color for close button"
+msgstr "Warna utama untuk tombol close"
+
+msgid "Background Opacity"
+msgstr "Opacity Background"
+
+msgid "Normal background transparency (0.0 - 1.0)"
+msgstr "Transparansi background normal (0.0 - 1.0)"
+
+msgid "Hover Opacity"
+msgstr "Opacity Hover"
+
+msgid "Background transparency on hover (0.0 - 1.0)"
+msgstr "Transparansi background saat hover (0.0 - 1.0)"
+
+msgid "Minimize Button"
+msgstr "Tombol Minimize"
+
+msgid "Color and opacity for minimize button"
+msgstr "Warna dan opacity untuk tombol minimize"
+
+msgid "Minimize Color"
+msgstr "Warna Minimize"
+
+msgid "Main color for minimize button"
+msgstr "Warna utama untuk tombol minimize"
+
+msgid "Maximize Button"
+msgstr "Tombol Maximize"
+
+msgid "Color and opacity for maximize button"
+msgstr "Warna dan opacity untuk tombol maximize"
+
+msgid "Maximize Color"
+msgstr "Warna Maximize"
+
+msgid "Main color for maximize button"
+msgstr "Warna utama untuk tombol maximize"
+
+msgid "Actions"
+msgstr "Aksi"
+
+msgid "Reset to Default"
+msgstr "Reset ke Default"
+
+msgid "Restore all settings to default values"
+msgstr "Kembalikan semua pengaturan ke nilai default"
+
+msgid "Reset"
+msgstr "Reset"
+
+msgid "Reset to Default?"
+msgstr "Reset ke Default?"
+
+msgid "This will restore all settings to their default values."
+msgstr "Ini akan mengembalikan semua pengaturan ke nilai default."

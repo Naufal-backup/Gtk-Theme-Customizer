@@ -12,10 +12,13 @@ GNOME Shell Extension to customize GTK 3 and GTK 4 window control buttons with f
 - 📱 **GTK 3 & 4 Support**: Automatically generates CSS for both GTK versions
 - 💾 **Auto-Save**: Changes are immediately saved to configuration files
 - 🔄 **Live Update**: Changes are applied in real-time
+- 🌍 **Multi-Language**: Automatically follows system language (English, Indonesian)
 
 ## Installation
 
-### Automatic
+### Easy Installation (Recommended)
+
+Just run the installer script:
 
 ```bash
 cd Gtk-Theme-Customizer
@@ -23,32 +26,40 @@ chmod +x install.sh
 ./install.sh
 ```
 
-### Manual
+The script will automatically:
+- Install all extension files
+- Compile translations
+- Compile GSettings schema
+- Enable the extension
+
+After installation, restart GNOME Shell:
+- **X11**: Press `Alt+F2`, type `r`, press Enter
+- **Wayland**: Log out and log back in
+
+### Manual Installation
 
 1. Copy extension folder to:
    ```bash
-   ~/.local/share/gnome-shell/extensions/gtk-theme-customizer@github.com/
+   ~/.local/share/gnome-shell/extensions/gtk-theme-customizer@naufal453/
    ```
 
 2. Compile schema:
    ```bash
-   glib-compile-schemas ~/.local/share/gnome-shell/extensions/gtk-theme-customizer@github.com/schemas/
+   glib-compile-schemas ~/.local/share/gnome-shell/extensions/gtk-theme-customizer@naufal453/schemas/
    ```
 
 3. Enable extension:
    ```bash
-   gnome-extensions enable gtk-theme-customizer@github.com
+   gnome-extensions enable gtk-theme-customizer@naufal453
    ```
 
-4. Restart GNOME Shell:
-   - **X11**: Press `Alt+F2`, type `r`, press Enter
-   - **Wayland**: Log out and log back in
+4. Restart GNOME Shell (see above)
 
 ## Usage
 
 1. Open GNOME Extensions or type:
    ```bash
-   gnome-extensions prefs gtk-theme-customizer@github.com
+   gnome-extensions prefs gtk-theme-customizer@naufal453
    ```
 
 2. Adjust settings:
@@ -65,8 +76,8 @@ chmod +x install.sh
 ## Uninstall
 
 ```bash
-gnome-extensions disable gtk-theme-customizer@github.com
-gnome-extensions uninstall gtk-theme-customizer@github.com
+gnome-extensions disable gtk-theme-customizer@naufal453
+gnome-extensions uninstall gtk-theme-customizer@naufal453
 ```
 
 ## Compatibility

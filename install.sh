@@ -3,7 +3,7 @@
 # GTK Theme Customizer - Installation Script
 # This script installs the GNOME Shell extension
 
-EXTENSION_UUID="gtk-theme-customizer@github.com"
+EXTENSION_UUID="gtk-theme-customizer@naufal453"
 EXTENSION_DIR="$HOME/.local/share/gnome-shell/extensions/$EXTENSION_UUID"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
@@ -34,6 +34,25 @@ cp "$SCRIPT_DIR/prefs.js" "$EXTENSION_DIR/"
 cp "$SCRIPT_DIR/metadata.json" "$EXTENSION_DIR/"
 cp "$SCRIPT_DIR/stylesheet.css" "$EXTENSION_DIR/"
 
+# Compile and copy locale files
+echo "🌍 Installing translations..."
+mkdir -p "$EXTENSION_DIR/locale"
+if [ -d "$SCRIPT_DIR/locale" ]; then
+    # Compile .po files to .mo if msgfmt is available
+    if command -v msgfmt &> /dev/null; then
+        echo "  Compiling translations..."
+        for po_file in "$SCRIPT_DIR"/locale/*/LC_MESSAGES/*.po; do
+            if [ -f "$po_file" ]; then
+                mo_file="${po_file%.po}.mo"
+                msgfmt "$po_file" -o "$mo_file"
+                echo "  ✓ Compiled $(basename "$po_file")"
+            fi
+        done
+    fi
+    cp -r "$SCRIPT_DIR/locale"/* "$EXTENSION_DIR/locale/"
+    echo "✓ Translations installed"
+fi
+
 # Copy and compile schema
 echo "⚙️  Installing GSettings schema..."
 mkdir -p "$EXTENSION_DIR/schemas"
@@ -47,18 +66,28 @@ else
     echo "⚠️  Warning: glib-compile-schemas not found. Schema compilation skipped."
 fi
 
+# Enable extension automatically
+echo ""
+echo "🔌 Enabling extension..."
+if command -v gnome-extensions &> /dev/null; then
+    gnome-extensions enable "$EXTENSION_UUID" 2>/dev/null
+    if [ $? -eq 0 ]; then
+        echo "✓ Extension enabled"
+    else
+        echo "⚠️  Could not enable automatically. You may need to restart GNOME Shell first."
+    fi
+else
+    echo "⚠️  gnome-extensions command not found. Please enable manually."
+fi
+
 echo ""
 echo "✅ Installation complete!"
-echo ""
-echo "To enable the extension, run:"
-echo "  gnome-extensions enable $EXTENSION_UUID"
-echo ""
-echo "Or use GNOME Extensions app to enable it."
-echo ""
-echo "To configure, run:"
-echo "  gnome-extensions prefs $EXTENSION_UUID"
 echo ""
 echo "📝 Note: You may need to restart GNOME Shell:"
 echo "  - On X11: Press Alt+F2, type 'r', press Enter"
 echo "  - On Wayland: Log out and log back in"
+echo ""
+echo "After restart, the extension should be active."
+echo "To configure, run: gnome-extensions prefs $EXTENSION_UUID"
+echo "Or open GNOME Extensions app."
 echo ""

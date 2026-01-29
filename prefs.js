@@ -2,7 +2,7 @@ import Adw from 'gi://Adw';
 import Gtk from 'gi://Gtk';
 import Gdk from 'gi://Gdk';
 import Gio from 'gi://Gio';
-import {ExtensionPreferences} from 'resource:///org/gnome/Shell/Extensions/js/extensions/prefs.js';
+import {ExtensionPreferences, gettext as _} from 'resource:///org/gnome/Shell/Extensions/js/extensions/prefs.js';
 
 export default class GtkThemeCustomizerPreferences extends ExtensionPreferences {
     fillPreferencesWindow(window) {
@@ -10,22 +10,22 @@ export default class GtkThemeCustomizerPreferences extends ExtensionPreferences 
 
         // Main Page
         const page = new Adw.PreferencesPage({
-            title: 'Pengaturan',
+            title: _('Settings'),
             icon_name: 'preferences-system-symbolic',
         });
         window.add(page);
 
         // Button Size Group
         const sizeGroup = new Adw.PreferencesGroup({
-            title: 'Ukuran Tombol',
-            description: 'Konfigurasi ukuran dan jarak tombol window',
+            title: _('Button Size'),
+            description: _('Configure button size and spacing'),
         });
         page.add(sizeGroup);
 
         // Icon Size
         const iconSizeRow = new Adw.SpinRow({
-            title: 'Ukuran Ikon',
-            subtitle: 'Ukuran ikon dalam piksel',
+            title: _('Icon Size'),
+            subtitle: _('Icon size in pixels'),
             adjustment: new Gtk.Adjustment({
                 lower: 16,
                 upper: 48,
@@ -38,8 +38,8 @@ export default class GtkThemeCustomizerPreferences extends ExtensionPreferences 
 
         // Border Radius
         const borderRadiusRow = new Adw.SpinRow({
-            title: 'Border Radius',
-            subtitle: 'Kelengkungan sudut tombol (0 = kotak, 999 = bulat penuh)',
+            title: _('Border Radius'),
+            subtitle: _('Button corner roundness (0 = square, 999 = fully rounded)'),
             adjustment: new Gtk.Adjustment({
                 lower: 0,
                 upper: 999,
@@ -52,8 +52,8 @@ export default class GtkThemeCustomizerPreferences extends ExtensionPreferences 
 
         // Button Padding
         const paddingRow = new Adw.SpinRow({
-            title: 'Padding Tombol',
-            subtitle: 'Ruang dalam tombol di sekitar ikon',
+            title: _('Button Padding'),
+            subtitle: _('Inner space around icon'),
             adjustment: new Gtk.Adjustment({
                 lower: 0,
                 upper: 20,
@@ -66,7 +66,7 @@ export default class GtkThemeCustomizerPreferences extends ExtensionPreferences 
 
         // Button Margin
         const marginRow = new Adw.EntryRow({
-            title: 'Margin Tombol',
+            title: _('Button Margin'),
             text: settings.get_string('button-margin'),
         });
         marginRow.connect('changed', (entry) => {
@@ -76,8 +76,8 @@ export default class GtkThemeCustomizerPreferences extends ExtensionPreferences 
 
         // Button Background Color
         const buttonBgRow = this._createColorRow(
-            'Background Tombol Default',
-            'Warna background default untuk semua tombol',
+            _('Default Button Background'),
+            _('Default background color for all buttons'),
             settings,
             'button-bg-color'
         );
@@ -85,14 +85,14 @@ export default class GtkThemeCustomizerPreferences extends ExtensionPreferences 
 
         // GTK 3 Specific Settings Group
         const gtk3Group = new Adw.PreferencesGroup({
-            title: 'Pengaturan GTK 3',
-            description: 'Konfigurasi khusus untuk aplikasi GTK 3',
+            title: _('GTK 3 Settings'),
+            description: _('Specific configuration for GTK 3 applications'),
         });
         page.add(gtk3Group);
 
         const gtk3MinHeightRow = new Adw.SpinRow({
-            title: 'Min Height Tombol',
-            subtitle: 'Tinggi minimum tombol GTK 3',
+            title: _('Button Min Height'),
+            subtitle: _('Minimum height for GTK 3 buttons'),
             adjustment: new Gtk.Adjustment({
                 lower: 20,
                 upper: 60,
@@ -104,8 +104,8 @@ export default class GtkThemeCustomizerPreferences extends ExtensionPreferences 
         gtk3Group.add(gtk3MinHeightRow);
 
         const gtk3MinWidthRow = new Adw.SpinRow({
-            title: 'Min Width Tombol',
-            subtitle: 'Lebar minimum tombol GTK 3',
+            title: _('Button Min Width'),
+            subtitle: _('Minimum width for GTK 3 buttons'),
             adjustment: new Gtk.Adjustment({
                 lower: 20,
                 upper: 60,
@@ -117,8 +117,8 @@ export default class GtkThemeCustomizerPreferences extends ExtensionPreferences 
         gtk3Group.add(gtk3MinWidthRow);
 
         const gtk3MarginTopRow = new Adw.SpinRow({
-            title: 'Margin Top',
-            subtitle: 'Margin atas tombol GTK 3',
+            title: _('Margin Top'),
+            subtitle: _('Top margin for GTK 3 buttons'),
             adjustment: new Gtk.Adjustment({
                 lower: 0,
                 upper: 20,
@@ -130,8 +130,8 @@ export default class GtkThemeCustomizerPreferences extends ExtensionPreferences 
         gtk3Group.add(gtk3MarginTopRow);
 
         const gtk3MarginBottomRow = new Adw.SpinRow({
-            title: 'Margin Bottom',
-            subtitle: 'Margin bawah tombol GTK 3',
+            title: _('Margin Bottom'),
+            subtitle: _('Bottom margin for GTK 3 buttons'),
             adjustment: new Gtk.Adjustment({
                 lower: 0,
                 upper: 20,
@@ -143,8 +143,8 @@ export default class GtkThemeCustomizerPreferences extends ExtensionPreferences 
         gtk3Group.add(gtk3MarginBottomRow);
 
         const gtk3MarginLeftRow = new Adw.SpinRow({
-            title: 'Margin Left',
-            subtitle: 'Margin kiri tombol GTK 3',
+            title: _('Margin Left'),
+            subtitle: _('Left margin for GTK 3 buttons'),
             adjustment: new Gtk.Adjustment({
                 lower: 0,
                 upper: 20,
@@ -156,8 +156,8 @@ export default class GtkThemeCustomizerPreferences extends ExtensionPreferences 
         gtk3Group.add(gtk3MarginLeftRow);
 
         const gtk3MarginRightRow = new Adw.SpinRow({
-            title: 'Margin Right',
-            subtitle: 'Margin kanan tombol GTK 3',
+            title: _('Margin Right'),
+            subtitle: _('Right margin for GTK 3 buttons'),
             adjustment: new Gtk.Adjustment({
                 lower: 0,
                 upper: 20,
@@ -169,8 +169,8 @@ export default class GtkThemeCustomizerPreferences extends ExtensionPreferences 
         gtk3Group.add(gtk3MarginRightRow);
 
         const gtk3IconScaleRow = new Adw.SpinRow({
-            title: 'Skala Ikon',
-            subtitle: 'Faktor skala untuk ikon GTK 3 (1.0 = normal)',
+            title: _('Icon Scale'),
+            subtitle: _('Scale factor for GTK 3 icons (1.0 = normal)'),
             digits: 2,
             adjustment: new Gtk.Adjustment({
                 lower: 0.5,
@@ -184,22 +184,22 @@ export default class GtkThemeCustomizerPreferences extends ExtensionPreferences 
 
         // Close Button Group
         const closeGroup = new Adw.PreferencesGroup({
-            title: 'Tombol Close',
-            description: 'Warna dan opacity untuk tombol close',
+            title: _('Close Button'),
+            description: _('Color and opacity for close button'),
         });
         page.add(closeGroup);
 
         const closeColorRow = this._createColorRow(
-            'Warna Close',
-            'Warna utama untuk tombol close',
+            _('Close Color'),
+            _('Main color for close button'),
             settings,
             'close-color'
         );
         closeGroup.add(closeColorRow);
 
         const closeBgOpacityRow = new Adw.SpinRow({
-            title: 'Opacity Background',
-            subtitle: 'Transparansi background normal (0.0 - 1.0)',
+            title: _('Background Opacity'),
+            subtitle: _('Normal background transparency (0.0 - 1.0)'),
             digits: 2,
             adjustment: new Gtk.Adjustment({
                 lower: 0.0,
@@ -212,8 +212,8 @@ export default class GtkThemeCustomizerPreferences extends ExtensionPreferences 
         closeGroup.add(closeBgOpacityRow);
 
         const closeHoverOpacityRow = new Adw.SpinRow({
-            title: 'Opacity Hover',
-            subtitle: 'Transparansi background saat hover (0.0 - 1.0)',
+            title: _('Hover Opacity'),
+            subtitle: _('Background transparency on hover (0.0 - 1.0)'),
             digits: 2,
             adjustment: new Gtk.Adjustment({
                 lower: 0.0,
@@ -227,22 +227,22 @@ export default class GtkThemeCustomizerPreferences extends ExtensionPreferences 
 
         // Minimize Button Group
         const minimizeGroup = new Adw.PreferencesGroup({
-            title: 'Tombol Minimize',
-            description: 'Warna dan opacity untuk tombol minimize',
+            title: _('Minimize Button'),
+            description: _('Color and opacity for minimize button'),
         });
         page.add(minimizeGroup);
 
         const minimizeColorRow = this._createColorRow(
-            'Warna Minimize',
-            'Warna utama untuk tombol minimize',
+            _('Minimize Color'),
+            _('Main color for minimize button'),
             settings,
             'minimize-color'
         );
         minimizeGroup.add(minimizeColorRow);
 
         const minimizeBgOpacityRow = new Adw.SpinRow({
-            title: 'Opacity Background',
-            subtitle: 'Transparansi background normal (0.0 - 1.0)',
+            title: _('Background Opacity'),
+            subtitle: _('Normal background transparency (0.0 - 1.0)'),
             digits: 2,
             adjustment: new Gtk.Adjustment({
                 lower: 0.0,
@@ -255,8 +255,8 @@ export default class GtkThemeCustomizerPreferences extends ExtensionPreferences 
         minimizeGroup.add(minimizeBgOpacityRow);
 
         const minimizeHoverOpacityRow = new Adw.SpinRow({
-            title: 'Opacity Hover',
-            subtitle: 'Transparansi background saat hover (0.0 - 1.0)',
+            title: _('Hover Opacity'),
+            subtitle: _('Background transparency on hover (0.0 - 1.0)'),
             digits: 2,
             adjustment: new Gtk.Adjustment({
                 lower: 0.0,
@@ -270,22 +270,22 @@ export default class GtkThemeCustomizerPreferences extends ExtensionPreferences 
 
         // Maximize Button Group
         const maximizeGroup = new Adw.PreferencesGroup({
-            title: 'Tombol Maximize',
-            description: 'Warna dan opacity untuk tombol maximize',
+            title: _('Maximize Button'),
+            description: _('Color and opacity for maximize button'),
         });
         page.add(maximizeGroup);
 
         const maximizeColorRow = this._createColorRow(
-            'Warna Maximize',
-            'Warna utama untuk tombol maximize',
+            _('Maximize Color'),
+            _('Main color for maximize button'),
             settings,
             'maximize-color'
         );
         maximizeGroup.add(maximizeColorRow);
 
         const maximizeBgOpacityRow = new Adw.SpinRow({
-            title: 'Opacity Background',
-            subtitle: 'Transparansi background normal (0.0 - 1.0)',
+            title: _('Background Opacity'),
+            subtitle: _('Normal background transparency (0.0 - 1.0)'),
             digits: 2,
             adjustment: new Gtk.Adjustment({
                 lower: 0.0,
@@ -298,8 +298,8 @@ export default class GtkThemeCustomizerPreferences extends ExtensionPreferences 
         maximizeGroup.add(maximizeBgOpacityRow);
 
         const maximizeHoverOpacityRow = new Adw.SpinRow({
-            title: 'Opacity Hover',
-            subtitle: 'Transparansi background saat hover (0.0 - 1.0)',
+            title: _('Hover Opacity'),
+            subtitle: _('Background transparency on hover (0.0 - 1.0)'),
             digits: 2,
             adjustment: new Gtk.Adjustment({
                 lower: 0.0,
@@ -313,16 +313,16 @@ export default class GtkThemeCustomizerPreferences extends ExtensionPreferences 
 
         // Reset Button
         const actionsGroup = new Adw.PreferencesGroup({
-            title: 'Aksi',
+            title: _('Actions'),
         });
         page.add(actionsGroup);
 
         const resetRow = new Adw.ActionRow({
-            title: 'Reset ke Default',
-            subtitle: 'Kembalikan semua pengaturan ke nilai default',
+            title: _('Reset to Default'),
+            subtitle: _('Restore all settings to default values'),
         });
         const resetButton = new Gtk.Button({
-            label: 'Reset',
+            label: _('Reset'),
             valign: Gtk.Align.CENTER,
             css_classes: ['destructive-action'],
         });
@@ -369,8 +369,8 @@ export default class GtkThemeCustomizerPreferences extends ExtensionPreferences 
 
     _resetToDefaults(settings) {
         const dialog = new Gtk.MessageDialog({
-            text: 'Reset ke Default?',
-            secondary_text: 'Ini akan mengembalikan semua pengaturan ke nilai default.',
+            text: _('Reset to Default?'),
+            secondary_text: _('This will restore all settings to their default values.'),
             message_type: Gtk.MessageType.WARNING,
             buttons: Gtk.ButtonsType.OK_CANCEL,
             modal: true,
