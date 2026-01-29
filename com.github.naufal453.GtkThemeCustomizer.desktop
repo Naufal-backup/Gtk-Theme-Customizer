@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=GTK Theme Customizer
+Comment=Customize GTK 3/4 window controls (size, colors, border radius)
+Icon=preferences-desktop-theme
+Exec=gjs -m /usr/share/gtk-theme-customizer/main.js
+Terminal=false
+Categories=GNOME;GTK;Settings;DesktopSettings;
+Keywords=theme;gtk;customize;window;controls;
+StartupNotify=true
