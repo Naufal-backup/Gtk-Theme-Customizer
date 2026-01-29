@@ -12,6 +12,7 @@ GNOME Shell Extension to customize GTK 3 and GTK 4 window control buttons with f
 - 📱 **GTK 3 & 4 Support**: Automatically generates CSS for both GTK versions
 - 💾 **Auto-Save**: Changes are immediately saved to configuration files
 - 🔄 **Live Update**: Changes are applied in real-time
+- 🔑 **Apply to Root**: Copy themes and configurations to root user with one click
 - 🌍 **Multi-Language**: Automatically follows system language (English, Indonesian)
 
 ## Installation
@@ -68,10 +69,28 @@ After installation, restart GNOME Shell:
    - **Padding & Margin**: Set inner and outer button spacing
    - **Button Colors**: Choose colors for close, minimize, and maximize buttons
    - **Opacity**: Set background transparency for normal and hover states
+   - **Apply to Root**: Copy your themes and GTK configurations to root user
 
 3. Changes are automatically applied to:
    - `~/.config/gtk-4.0/gtk.css`
    - `~/.config/gtk-3.0/gtk.css`
+
+### Apply to Root User
+
+To apply your themes and GTK configurations to the root user (useful for applications running as root):
+
+1. Open extension preferences
+2. Scroll to **Actions** section
+3. Click **Apply to Root** button
+4. Enter your password when prompted
+5. Your themes from `~/.themes` and configurations from `~/.config/gtk-3.0` and `~/.config/gtk-4.0` will be copied to `/root/`
+
+**New:** The script now automatically detects your current theme settings including:
+- GTK theme name
+- Icon theme
+- Color scheme (dark/light mode)
+
+These settings will be automatically applied to the root user, ensuring the root environment matches your normal user environment.
 
 ## Uninstall
 

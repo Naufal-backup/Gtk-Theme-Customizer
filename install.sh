@@ -33,6 +33,8 @@ cp "$SCRIPT_DIR/extension.js" "$EXTENSION_DIR/"
 cp "$SCRIPT_DIR/prefs.js" "$EXTENSION_DIR/"
 cp "$SCRIPT_DIR/metadata.json" "$EXTENSION_DIR/"
 cp "$SCRIPT_DIR/stylesheet.css" "$EXTENSION_DIR/"
+cp "$SCRIPT_DIR/apply-to-root.sh" "$EXTENSION_DIR/"
+chmod +x "$EXTENSION_DIR/apply-to-root.sh"
 
 # Compile and copy locale files
 echo "🌍 Installing translations..."

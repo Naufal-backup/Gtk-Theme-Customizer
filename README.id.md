@@ -12,6 +12,7 @@ GNOME Shell Extension untuk mengkustomisasi tombol window GTK 3 dan GTK 4 dengan
 - 📱 **Support GTK 3 & 4**: Otomatis generate CSS untuk kedua versi GTK
 - 💾 **Auto-Save**: Perubahan langsung tersimpan ke file konfigurasi
 - 🔄 **Live Update**: Perubahan diterapkan secara real-time
+- 🔑 **Terapkan ke Root**: Salin tema dan konfigurasi ke pengguna root dengan satu klik
 - 🌍 **Multi-Bahasa**: Otomatis mengikuti bahasa sistem (English, Indonesian)
 
 ## Instalasi
@@ -68,10 +69,28 @@ Setelah instalasi, restart GNOME Shell:
    - **Padding & Margin**: Atur jarak dalam dan luar tombol
    - **Warna Tombol**: Pilih warna untuk close, minimize, dan maximize
    - **Opacity**: Atur transparansi background normal dan hover
+   - **Terapkan ke Root**: Salin tema dan konfigurasi GTK Anda ke pengguna root
 
 3. Perubahan otomatis diterapkan ke:
    - `~/.config/gtk-4.0/gtk.css`
    - `~/.config/gtk-3.0/gtk.css`
+
+### Terapkan ke Pengguna Root
+
+Untuk menerapkan tema dan konfigurasi GTK Anda ke pengguna root (berguna untuk aplikasi yang berjalan sebagai root):
+
+1. Buka preferensi ekstensi
+2. Scroll ke bagian **Aksi**
+3. Klik tombol **Terapkan ke Root**
+4. Masukkan password Anda saat diminta
+5. Tema dari `~/.themes` dan konfigurasi dari `~/.config/gtk-3.0` dan `~/.config/gtk-4.0` akan disalin ke `/root/`
+
+**Baru:** Script sekarang secara otomatis mendeteksi pengaturan tema Anda saat ini termasuk:
+- Nama tema GTK
+- Tema ikon
+- Skema warna (mode gelap/terang)
+
+Pengaturan ini akan secara otomatis diterapkan ke pengguna root, memastikan lingkungan root sesuai dengan lingkungan pengguna normal Anda.
 
 ## Uninstall
 

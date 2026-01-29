@@ -2,6 +2,7 @@ import Adw from 'gi://Adw';
 import Gtk from 'gi://Gtk';
 import Gdk from 'gi://Gdk';
 import Gio from 'gi://Gio';
+import GLib from 'gi://GLib';
 import {ExtensionPreferences, gettext as _} from 'resource:///org/gnome/Shell/Extensions/js/extensions/prefs.js';
 
 export default class GtkThemeCustomizerPreferences extends ExtensionPreferences {
@@ -317,6 +318,22 @@ export default class GtkThemeCustomizerPreferences extends ExtensionPreferences 
         });
         page.add(actionsGroup);
 
+        // Apply to Root Button
+        const applyToRootRow = new Adw.ActionRow({
+            title: _('Apply to Root'),
+            subtitle: _('Copy themes and GTK configurations to root user'),
+        });
+        const applyToRootButton = new Gtk.Button({
+            label: _('Apply'),
+            valign: Gtk.Align.CENTER,
+            css_classes: ['suggested-action'],
+        });
+        applyToRootButton.connect('clicked', () => {
+            this._applyToRoot(window);
+        });
+        applyToRootRow.add_suffix(applyToRootButton);
+        actionsGroup.add(applyToRootRow);
+
         const resetRow = new Adw.ActionRow({
             title: _('Reset to Default'),
             subtitle: _('Restore all settings to default values'),
@@ -405,6 +422,81 @@ export default class GtkThemeCustomizerPreferences extends ExtensionPreferences 
                 settings.reset('gtk3-margin-right');
                 settings.reset('gtk3-icon-scale');
             }
+            dialog.destroy();
+        });
+
+        dialog.show();
+    }
+
+    _applyToRoot(window) {
+        const dialog = new Gtk.MessageDialog({
+            text: _('Apply to Root User?'),
+            secondary_text: _('This will copy your themes and GTK configurations to the root user, including your current theme and dark/light mode settings. You will be prompted for your password.'),
+            message_type: Gtk.MessageType.QUESTION,
+            buttons: Gtk.ButtonsType.OK_CANCEL,
+            modal: true,
+            transient_for: window,
+        });
+
+        dialog.connect('response', (widget, response) => {
+            if (response === Gtk.ResponseType.OK) {
+                const scriptPath = GLib.build_filenamev([this.path, 'apply-to-root.sh']);
+                const homeDir = GLib.get_home_dir();
+                const userName = GLib.get_user_name();
+                
+                try {
+                    // Run the script with pkexec
+                    const [success, pid] = GLib.spawn_async(
+                        null,
+                        ['pkexec', scriptPath, homeDir, userName],
+                        null,
+                        GLib.SpawnFlags.SEARCH_PATH | GLib.SpawnFlags.DO_NOT_REAP_CHILD,
+                        null
+                    );
+
+                    if (success) {
+                        GLib.child_watch_add(GLib.PRIORITY_DEFAULT, pid, (pid, status) => {
+                            if (status === 0) {
+                                this._showInfoDialog(
+                                    window,
+                                    _('Success'),
+                                    _('Themes and configurations have been successfully applied to root user.')
+                                );
+                            } else {
+                                this._showInfoDialog(
+                                    window,
+                                    _('Error'),
+                                    _('Failed to apply configurations to root. Please check if the script has proper permissions.')
+                                );
+                            }
+                            GLib.spawn_close_pid(pid);
+                        });
+                    }
+                } catch (e) {
+                    this._showInfoDialog(
+                        window,
+                        _('Error'),
+                        _('Failed to run the apply script: ') + e.message
+                    );
+                }
+            }
+            dialog.destroy();
+        });
+
+        dialog.show();
+    }
+
+    _showInfoDialog(window, title, message) {
+        const dialog = new Gtk.MessageDialog({
+            text: title,
+            secondary_text: message,
+            message_type: Gtk.MessageType.INFO,
+            buttons: Gtk.ButtonsType.OK,
+            modal: true,
+            transient_for: window,
+        });
+
+        dialog.connect('response', () => {
             dialog.destroy();
         });
 

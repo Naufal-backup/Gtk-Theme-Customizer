@@ -151,6 +151,36 @@ msgstr "Warna utama untuk tombol maximize"
 msgid "Actions"
 msgstr "Aksi"
 
+msgid "Apply to Root"
+msgstr "Terapkan ke Root"
+
+msgid "Copy themes and GTK configurations to root user"
+msgstr "Salin tema dan konfigurasi GTK ke pengguna root"
+
+msgid "Apply"
+msgstr "Terapkan"
+
+msgid "Apply to Root User?"
+msgstr "Terapkan ke Pengguna Root?"
+
+msgid "This will copy your themes from ~/.themes and GTK configurations from ~/.config/gtk-3.0 and ~/.config/gtk-4.0 to the root user. You will be prompted for your password."
+msgstr "Ini akan menyalin tema dari ~/.themes dan konfigurasi GTK dari ~/.config/gtk-3.0 dan ~/.config/gtk-4.0 ke pengguna root. Anda akan diminta memasukkan password."
+
+msgid "Success"
+msgstr "Berhasil"
+
+msgid "Themes and configurations have been successfully applied to root user."
+msgstr "Tema dan konfigurasi telah berhasil diterapkan ke pengguna root."
+
+msgid "Error"
+msgstr "Error"
+
+msgid "Failed to apply configurations to root. Please check if the script has proper permissions."
+msgstr "Gagal menerapkan konfigurasi ke root. Silakan periksa apakah script memiliki izin yang tepat."
+
+msgid "Failed to run the apply script: "
+msgstr "Gagal menjalankan script: "
+
 msgid "Reset to Default"
 msgstr "Reset ke Default"
 
@@ -165,3 +195,4 @@ msgstr "Reset ke Default?"
 
 msgid "This will restore all settings to their default values."
 msgstr "Ini akan mengembalikan semua pengaturan ke nilai default."
+

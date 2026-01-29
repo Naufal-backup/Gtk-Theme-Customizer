@@ -150,6 +150,36 @@ msgstr ""
 msgid "Actions"
 msgstr ""
 
+msgid "Apply to Root"
+msgstr ""
+
+msgid "Copy themes and GTK configurations to root user"
+msgstr ""
+
+msgid "Apply"
+msgstr ""
+
+msgid "Apply to Root User?"
+msgstr "Apply to Root User?"
+
+msgid "This will copy your themes from ~/.themes and GTK configurations from ~/.config/gtk-3.0 and ~/.config/gtk-4.0 to the root user. You will be prompted for your password."
+msgstr ""
+
+msgid "Success"
+msgstr ""
+
+msgid "Themes and configurations have been successfully applied to root user."
+msgstr ""
+
+msgid "Error"
+msgstr ""
+
+msgid "Failed to apply configurations to root. Please check if the script has proper permissions."
+msgstr ""
+
+msgid "Failed to run the apply script: "
+msgstr ""
+
 msgid "Reset to Default"
 msgstr ""
 
@@ -164,3 +194,4 @@ msgstr ""
 
 msgid "This will restore all settings to their default values."
 msgstr ""
+

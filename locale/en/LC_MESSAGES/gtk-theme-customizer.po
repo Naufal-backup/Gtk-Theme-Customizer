@@ -151,6 +151,36 @@ msgstr "Main color for maximize button"
 msgid "Actions"
 msgstr "Actions"
 
+msgid "Apply to Root"
+msgstr "Apply to Root"
+
+msgid "Copy themes and GTK configurations to root user"
+msgstr "Copy themes and GTK configurations to root user"
+
+msgid "Apply"
+msgstr "Apply"
+
+msgid "Apply to Root User?"
+msgstr "Apply to Root User?"
+
+msgid "This will copy your themes from ~/.themes and GTK configurations from ~/.config/gtk-3.0 and ~/.config/gtk-4.0 to the root user. You will be prompted for your password."
+msgstr "This will copy your themes from ~/.themes and GTK configurations from ~/.config/gtk-3.0 and ~/.config/gtk-4.0 to the root user. You will be prompted for your password."
+
+msgid "Success"
+msgstr "Success"
+
+msgid "Themes and configurations have been successfully applied to root user."
+msgstr "Themes and configurations have been successfully applied to root user."
+
+msgid "Error"
+msgstr "Error"
+
+msgid "Failed to apply configurations to root. Please check if the script has proper permissions."
+msgstr "Failed to apply configurations to root. Please check if the script has proper permissions."
+
+msgid "Failed to run the apply script: "
+msgstr "Failed to run the apply script: "
+
 msgid "Reset to Default"
 msgstr "Reset to Default"
 
@@ -165,3 +195,4 @@ msgstr "Reset to Default?"
 
 msgid "This will restore all settings to their default values."
 msgstr "This will restore all settings to their default values."
+
