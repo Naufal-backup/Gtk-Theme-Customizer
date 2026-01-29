@@ -1,21 +1,21 @@
 # GTK Theme Customizer
 
-**🇮🇩 Bahasa Indonesia** | [🇬🇧 English](README.en.md)
+**�🇧 English** | [🇮🇩 Bahasa Indonesia](README.id.md)
 
-GNOME Shell Extension untuk mengkustomisasi tombol window GTK 3 dan GTK 4 dengan kontrol penuh atas warna, ukuran, dan border radius.
+GNOME Shell Extension to customize GTK 3 and GTK 4 window control buttons with full control over colors, size, and border radius.
 
-## Fitur
+## Features
 
-- ✨ **Customisasi Penuh**: Ubah warna, ukuran ikon, padding, margin, dan border radius
-- 🎨 **Color Picker**: Pilih warna dengan mudah menggunakan color picker GTK
-- 🎯 **Selector Agresif**: Menggunakan selector CSS yang kuat untuk memastikan perubahan diterapkan
-- 📱 **Support GTK 3 & 4**: Otomatis generate CSS untuk kedua versi GTK
-- 💾 **Auto-Save**: Perubahan langsung tersimpan ke file konfigurasi
-- 🔄 **Live Update**: Perubahan diterapkan secara real-time
+- ✨ **Full Customization**: Change colors, icon size, padding, margin, and border radius
+- 🎨 **Color Picker**: Easily select colors using GTK color picker
+- 🎯 **Aggressive Selector**: Uses powerful CSS selectors to ensure changes are applied
+- 📱 **GTK 3 & 4 Support**: Automatically generates CSS for both GTK versions
+- 💾 **Auto-Save**: Changes are immediately saved to configuration files
+- 🔄 **Live Update**: Changes are applied in real-time
 
-## Instalasi
+## Installation
 
-### Otomatis
+### Automatic
 
 ```bash
 cd Gtk-Theme-Customizer
@@ -25,7 +25,7 @@ chmod +x install.sh
 
 ### Manual
 
-1. Copy folder extension ke:
+1. Copy extension folder to:
    ```bash
    ~/.local/share/gnome-shell/extensions/gtk-theme-customizer@github.com/
    ```
@@ -41,24 +41,24 @@ chmod +x install.sh
    ```
 
 4. Restart GNOME Shell:
-   - **X11**: `Alt+F2`, ketik `r`, tekan Enter
-   - **Wayland**: Log out dan log in kembali
+   - **X11**: Press `Alt+F2`, type `r`, press Enter
+   - **Wayland**: Log out and log back in
 
-## Penggunaan
+## Usage
 
-1. Buka GNOME Extensions atau ketik:
+1. Open GNOME Extensions or type:
    ```bash
    gnome-extensions prefs gtk-theme-customizer@github.com
    ```
 
-2. Sesuaikan pengaturan:
-   - **Ukuran Ikon**: Ubah ukuran ikon tombol window
-   - **Border Radius**: Sesuaikan kelengkungan (0 = kotak, 999 = bulat penuh)
-   - **Padding & Margin**: Atur jarak dalam dan luar tombol
-   - **Warna Tombol**: Pilih warna untuk close, minimize, dan maximize
-   - **Opacity**: Atur transparansi background normal dan hover
+2. Adjust settings:
+   - **Icon Size**: Change window button icon size
+   - **Border Radius**: Adjust roundness (0 = square, 999 = fully rounded)
+   - **Padding & Margin**: Set inner and outer button spacing
+   - **Button Colors**: Choose colors for close, minimize, and maximize buttons
+   - **Opacity**: Set background transparency for normal and hover states
 
-3. Perubahan otomatis diterapkan ke:
+3. Changes are automatically applied to:
    - `~/.config/gtk-4.0/gtk.css`
    - `~/.config/gtk-3.0/gtk.css`
 
@@ -69,13 +69,13 @@ gnome-extensions disable gtk-theme-customizer@github.com
 gnome-extensions uninstall gtk-theme-customizer@github.com
 ```
 
-## Kompatibilitas
+## Compatibility
 
 - GNOME Shell 45+
 - GTK 3.0+
 - GTK 4.0+
 
-## Lisensi
+## License
 
 MIT License
 
@@ -83,9 +83,9 @@ MIT License
 
 https://github.com/naufal453/Gtk-Theme-Customizer
 
-## Kontribusi
+## Contributing
 
-Pull requests are welcome! Silakan buka issue terlebih dahulu untuk diskusi perubahan besar.
+Pull requests are welcome! Please open an issue first to discuss major changes.
 
 ## Author
 
