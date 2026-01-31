@@ -228,6 +228,26 @@ class GtkThemeCustomizerWindow extends Adw.PreferencesWindow {
         this._settings.bind('gtk3-icon-scale', gtk3IconScaleRow, 'value', Gio.SettingsBindFlags.DEFAULT);
         gtk3Group.add(gtk3IconScaleRow);
 
+        // Header Size Group
+        const headerGroup = new Adw.PreferencesGroup({
+            title: _('Header Size'),
+            description: _('Configure headerbar dimensions (applies to both GTK 3 and GTK 4)'),
+        });
+        page.add(headerGroup);
+
+        const headerMaxHeightRow = new Adw.SpinRow({
+            title: _('Max Height'),
+            subtitle: _('Maximum height for headerbar'),
+            adjustment: new Gtk.Adjustment({
+                lower: 30,
+                upper: 80,
+                step_increment: 1,
+                page_increment: 5,
+            }),
+        });
+        this._settings.bind('header-max-height', headerMaxHeightRow, 'value', Gio.SettingsBindFlags.DEFAULT);
+        headerGroup.add(headerMaxHeightRow);
+
         // Close Button Group
         const closeGroup = new Adw.PreferencesGroup({
             title: _('Close Button'),
@@ -491,11 +511,53 @@ class GtkThemeCustomizerWindow extends Adw.PreferencesWindow {
         const gtk3MarginRight = this._settings.get_int('gtk3-margin-right');
         const gtk3IconScale = this._settings.get_double('gtk3-icon-scale');
         
+        // Header Settings
+        const headerMaxHeight = this._settings.get_int('header-max-height');
+        
         // Generate GTK 4 CSS
         const gtk4Css = `/* ==========================================================================
    GTK Theme Customizer - Auto-generated
    Generated: ${new Date().toLocaleString()}
    ========================================================================== */
+
+/* ==========================================================================
+   HEADER SIZE: Limit headerbar height
+   ========================================================================== */
+headerbar,
+.titlebar {
+    min-height: ${headerMaxHeight}px;
+    max-height: ${headerMaxHeight}px;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+/* Constrain title text to prevent header expansion */
+headerbar .title,
+headerbar windowtitle,
+headerbar windowtitle > label,
+.titlebar .title,
+.titlebar windowtitle,
+.titlebar windowtitle > label {
+    font-size: 1em;
+    line-height: 1.2;
+    margin: 0;
+    padding: 0;
+}
+
+/* Force single line with ellipsis for long titles */
+headerbar windowtitle,
+.titlebar windowtitle {
+    max-height: ${headerMaxHeight - 8}px;
+    overflow: hidden;
+}
+
+headerbar windowtitle > label,
+.titlebar windowtitle > label {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+}
 
 /* ==========================================================================
    WINDOW CONTROLS: Reset & Configuration
@@ -513,7 +575,11 @@ headerbar windowcontrols > button,
     margin: ${buttonMargin};
     transition: all 0.2s ease-in-out;
     
-    background-color: ${buttonBgColor}; 
+    /* Prevent button size from being affected by header height */
+    min-height: ${gtk3MinHeight}px;
+    min-width: ${gtk3MinWidth}px;
+    
+    background-color: transparent; 
 }
 
 /* Icon Size */
@@ -524,34 +590,40 @@ headerbar windowcontrols image,
 }
 
 /* ==========================================================================
-   BUTTON COLORS
+   BUTTON COLORS - Applied to image/icon element
    ========================================================================== */
 /* Close Button */
-headerbar windowcontrols > button.close { 
+headerbar windowcontrols > button.close image,
+.titlebar windowcontrols > button.close image { 
     color: ${this._hexToRgba(closeColor, 0.8)}; 
     background-color: ${this._hexToRgba(closeColor, closeBgOpacity)}; 
 }
-headerbar windowcontrols > button.close:hover { 
+headerbar windowcontrols > button.close:hover image,
+.titlebar windowcontrols > button.close:hover image { 
     background-color: ${this._hexToRgba(closeColor, closeHoverOpacity)} !important; 
     color: #ffffff; 
 }
 
 /* Minimize Button */
-headerbar windowcontrols > button.minimize { 
+headerbar windowcontrols > button.minimize image,
+.titlebar windowcontrols > button.minimize image { 
     color: ${this._hexToRgba(minimizeColor, 0.8)}; 
     background-color: ${this._hexToRgba(minimizeColor, minimizeBgOpacity)}; 
 }
-headerbar windowcontrols > button.minimize:hover { 
+headerbar windowcontrols > button.minimize:hover image,
+.titlebar windowcontrols > button.minimize:hover image { 
     background-color: ${this._hexToRgba(minimizeColor, minimizeHoverOpacity)} !important; 
     color: #ffffff; 
 }
 
 /* Maximize Button */
-headerbar windowcontrols > button.maximize { 
+headerbar windowcontrols > button.maximize image,
+.titlebar windowcontrols > button.maximize image { 
     color: ${this._hexToRgba(maximizeColor, 0.8)}; 
     background-color: ${this._hexToRgba(maximizeColor, maximizeBgOpacity)}; 
 }
-headerbar windowcontrols > button.maximize:hover { 
+headerbar windowcontrols > button.maximize:hover image,
+.titlebar windowcontrols > button.maximize:hover image { 
     background-color: ${this._hexToRgba(maximizeColor, maximizeHoverOpacity)} !important; 
     color: #ffffff; 
 }
@@ -568,6 +640,32 @@ headerbar windowcontrols > button:active {
    GTK Theme Customizer - Auto-generated
    Generated: ${new Date().toLocaleString()}
    ========================================================================== */
+
+/* ==========================================================================
+   HEADER SIZE: Limit headerbar height
+   ========================================================================== */
+headerbar,
+.titlebar {
+    min-height: ${headerMaxHeight}px;
+    max-height: ${headerMaxHeight}px;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+/* Constrain title text to prevent header expansion */
+headerbar .title,
+headerbar label.title,
+.titlebar .title,
+.titlebar label.title {
+    font-size: 1em;
+    line-height: 1.2;
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 600px;
+}
 
 /* ==========================================================================
    WINDOW CONTROLS: Reset & Configuration
@@ -702,6 +800,8 @@ headerbar button.titlebutton:active,
                 this._settings.reset('gtk3-margin-left');
                 this._settings.reset('gtk3-margin-right');
                 this._settings.reset('gtk3-icon-scale');
+                
+                this._settings.reset('header-max-height');
             }
         });
 

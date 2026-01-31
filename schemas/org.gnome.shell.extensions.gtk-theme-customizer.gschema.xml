@@ -140,5 +140,12 @@
       <description>Scale factor for GTK 3 button icons</description>
     </key>
     
+    <!-- Header Size Settings -->
+    <key name="header-max-height" type="i">
+      <default>46</default>
+      <summary>Header Max Height</summary>
+      <description>Maximum height for headerbar (applies to both GTK 3 and GTK 4)</description>
+    </key>
+    
   </schema>
 </schemalist>
