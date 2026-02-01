@@ -33,67 +33,122 @@
       <description>Default background color for all buttons</description>
     </key>
     
+    <!-- GTK 4 Specific Settings -->
+    <key name="gtk4-margin-top" type="i">
+      <default>2</default>
+      <summary>GTK 4 Margin Top</summary>
+      <description>Top margin for GTK 4 buttons</description>
+    </key>
+    
+    <key name="gtk4-margin-bottom" type="i">
+      <default>2</default>
+      <summary>GTK 4 Margin Bottom</summary>
+      <description>Bottom margin for GTK 4 buttons</description>
+    </key>
+    
+    <key name="gtk4-margin-left" type="i">
+      <default>4</default>
+      <summary>GTK 4 Margin Left</summary>
+      <description>Left margin for GTK 4 buttons</description>
+    </key>
+    
+    <key name="gtk4-margin-right" type="i">
+      <default>4</default>
+      <summary>GTK 4 Margin Right</summary>
+      <description>Right margin for GTK 4 buttons</description>
+    </key>
+    
     <!-- Close Button Settings -->
     <key name="close-color" type="s">
       <default>'#FF5F57'</default>
-      <summary>Close Button Color</summary>
-      <description>Color for the close button</description>
+      <summary>Close Button Background Color</summary>
+      <description>Background color for the close button</description>
     </key>
     
-    <key name="close-bg-opacity" type="d">
-      <default>0.15</default>
-      <range min="0.0" max="1.0"/>
-      <summary>Close Button Background Opacity</summary>
-      <description>Background opacity for close button in normal state</description>
+    <key name="close-icon-color" type="s">
+      <default>'#FFFFFF'</default>
+      <summary>Close Button Icon Color</summary>
+      <description>Icon/foreground color for the close button</description>
     </key>
     
-    <key name="close-hover-opacity" type="d">
-      <default>0.5</default>
-      <range min="0.0" max="1.0"/>
-      <summary>Close Button Hover Opacity</summary>
-      <description>Background opacity for close button when hovered</description>
+    <key name="close-hover-color" type="s">
+      <default>'#FF5F57'</default>
+      <summary>Close Button Hover Background Color</summary>
+      <description>Background color for close button when hovered</description>
+    </key>
+    
+    <key name="close-hover-icon-color" type="s">
+      <default>'#FFFFFF'</default>
+      <summary>Close Button Hover Icon Color</summary>
+      <description>Icon color for close button when hovered</description>
+    </key>
+    
+    <key name="close-hover-bg-color" type="s">
+      <default>'#FF5F57'</default>
+      <summary>Close Button Hover Background Color (Custom Icon)</summary>
+      <description>Background color for close button when hovered (applies to custom icons)</description>
     </key>
     
     <!-- Minimize Button Settings -->
     <key name="minimize-color" type="s">
       <default>'#FFBD2E'</default>
-      <summary>Minimize Button Color</summary>
-      <description>Color for the minimize button</description>
+      <summary>Minimize Button Background Color</summary>
+      <description>Background color for the minimize button</description>
     </key>
     
-    <key name="minimize-bg-opacity" type="d">
-      <default>0.15</default>
-      <range min="0.0" max="1.0"/>
-      <summary>Minimize Button Background Opacity</summary>
-      <description>Background opacity for minimize button in normal state</description>
+    <key name="minimize-icon-color" type="s">
+      <default>'#000000'</default>
+      <summary>Minimize Button Icon Color</summary>
+      <description>Icon/foreground color for the minimize button</description>
     </key>
     
-    <key name="minimize-hover-opacity" type="d">
-      <default>0.5</default>
-      <range min="0.0" max="1.0"/>
-      <summary>Minimize Button Hover Opacity</summary>
-      <description>Background opacity for minimize button when hovered</description>
+    <key name="minimize-hover-color" type="s">
+      <default>'#FFBD2E'</default>
+      <summary>Minimize Button Hover Background Color</summary>
+      <description>Background color for minimize button when hovered</description>
+    </key>
+    
+    <key name="minimize-hover-icon-color" type="s">
+      <default>'#000000'</default>
+      <summary>Minimize Button Hover Icon Color</summary>
+      <description>Icon color for minimize button when hovered</description>
+    </key>
+    
+    <key name="minimize-hover-bg-color" type="s">
+      <default>'#FFBD2E'</default>
+      <summary>Minimize Button Hover Background Color (Custom Icon)</summary>
+      <description>Background color for minimize button when hovered (applies to custom icons)</description>
     </key>
     
     <!-- Maximize Button Settings -->
     <key name="maximize-color" type="s">
       <default>'#27C93F'</default>
-      <summary>Maximize Button Color</summary>
-      <description>Color for the maximize button</description>
+      <summary>Maximize Button Background Color</summary>
+      <description>Background color for the maximize button</description>
     </key>
     
-    <key name="maximize-bg-opacity" type="d">
-      <default>0.15</default>
-      <range min="0.0" max="1.0"/>
-      <summary>Maximize Button Background Opacity</summary>
-      <description>Background opacity for maximize button in normal state</description>
+    <key name="maximize-icon-color" type="s">
+      <default>'#FFFFFF'</default>
+      <summary>Maximize Button Icon Color</summary>
+      <description>Icon/foreground color for the maximize button</description>
     </key>
     
-    <key name="maximize-hover-opacity" type="d">
-      <default>0.5</default>
-      <range min="0.0" max="1.0"/>
-      <summary>Maximize Button Hover Opacity</summary>
-      <description>Background opacity for maximize button when hovered</description>
+    <key name="maximize-hover-color" type="s">
+      <default>'#27C93F'</default>
+      <summary>Maximize Button Hover Background Color</summary>
+      <description>Background color for maximize button when hovered</description>
+    </key>
+    
+    <key name="maximize-hover-icon-color" type="s">
+      <default>'#FFFFFF'</default>
+      <summary>Maximize Button Hover Icon Color</summary>
+      <description>Icon color for maximize button when hovered</description>
+    </key>
+    
+    <key name="maximize-hover-bg-color" type="s">
+      <default>'#27C93F'</default>
+      <summary>Maximize Button Hover Background Color (Custom Icon)</summary>
+      <description>Background color for maximize button when hovered (applies to custom icons)</description>
     </key>
     
     <!-- GTK 3 Specific Settings -->
@@ -145,6 +200,116 @@
       <default>46</default>
       <summary>Header Max Height</summary>
       <description>Maximum height for headerbar (applies to both GTK 3 and GTK 4)</description>
+    </key>
+    
+    <!-- Titlebar Text Settings -->
+    <key name="titlebar-text-mode" type="s">
+      <default>'show'</default>
+      <summary>Titlebar Text Mode</summary>
+      <description>Control titlebar text display: 'show' (show title), 'hide' (hide title), or 'wmclass' (show app name from wmclass)</description>
+    </key>
+    
+    <!-- Custom Icon Settings -->
+    <key name="use-custom-icons" type="b">
+      <default>false</default>
+      <summary>Use Custom Icons</summary>
+      <description>Use custom PNG icons or SVG code instead of default theme icons</description>
+    </key>
+    
+    <key name="custom-icon-opacity" type="d">
+      <default>1.0</default>
+      <range min="0.0" max="1.0"/>
+      <summary>Custom Icon Opacity</summary>
+      <description>Opacity/transparency of custom PNG and SVG icons (0.0 = transparent, 1.0 = opaque)</description>
+    </key>
+    
+    <key name="custom-icon-hover-opacity" type="d">
+      <default>0.8</default>
+      <range min="0.0" max="1.0"/>
+      <summary>Custom Icon Hover Opacity</summary>
+      <description>Opacity/transparency of custom PNG and SVG icons when hovered (0.0 = transparent, 1.0 = opaque)</description>
+    </key>
+    
+    <key name="custom-icon-hover-brightness" type="d">
+      <default>1.0</default>
+      <range min="0.0" max="3.0"/>
+      <summary>Custom Icon Hover Brightness</summary>
+      <description>Brightness filter for custom icons on hover (1.0 = normal, 2.0 = bright, 0.5 = dark)</description>
+    </key>
+    
+    <key name="close-icon-path" type="s">
+      <default>''</default>
+      <summary>Close Button Icon Path</summary>
+      <description>Path to custom PNG icon for close button</description>
+    </key>
+    
+    <key name="close-icon-svg" type="s">
+      <default>''</default>
+      <summary>Close Button SVG Code</summary>
+      <description>SVG code for close button icon</description>
+    </key>
+    
+    <key name="close-icon-size" type="i">
+      <default>30</default>
+      <summary>Close Icon Size</summary>
+      <description>Size of the close button icon in pixels</description>
+    </key>
+    
+    <key name="close-bg-opacity" type="d">
+      <default>1.0</default>
+      <range min="0.0" max="1.0"/>
+      <summary>Close Button Background Opacity</summary>
+      <description>Opacity of the close button background color</description>
+    </key>
+    
+    <key name="minimize-icon-path" type="s">
+      <default>''</default>
+      <summary>Minimize Button Icon Path</summary>
+      <description>Path to custom PNG icon for minimize button</description>
+    </key>
+    
+    <key name="minimize-icon-svg" type="s">
+      <default>''</default>
+      <summary>Minimize Button SVG Code</summary>
+      <description>SVG code for minimize button icon</description>
+    </key>
+    
+    <key name="minimize-icon-size" type="i">
+      <default>30</default>
+      <summary>Minimize Icon Size</summary>
+      <description>Size of the minimize button icon in pixels</description>
+    </key>
+    
+    <key name="minimize-bg-opacity" type="d">
+      <default>1.0</default>
+      <range min="0.0" max="1.0"/>
+      <summary>Minimize Button Background Opacity</summary>
+      <description>Opacity of the minimize button background color</description>
+    </key>
+    
+    <key name="maximize-icon-path" type="s">
+      <default>''</default>
+      <summary>Maximize Button Icon Path</summary>
+      <description>Path to custom PNG icon for maximize button</description>
+    </key>
+    
+    <key name="maximize-icon-svg" type="s">
+      <default>''</default>
+      <summary>Maximize Button SVG Code</summary>
+      <description>SVG code for maximize button icon</description>
+    </key>
+    
+    <key name="maximize-icon-size" type="i">
+      <default>30</default>
+      <summary>Maximize Icon Size</summary>
+      <description>Size of the maximize button icon in pixels</description>
+    </key>
+    
+    <key name="maximize-bg-opacity" type="d">
+      <default>1.0</default>
+      <range min="0.0" max="1.0"/>
+      <summary>Maximize Button Background Opacity</summary>
+      <description>Opacity of the maximize button background color</description>
     </key>
     
   </schema>
