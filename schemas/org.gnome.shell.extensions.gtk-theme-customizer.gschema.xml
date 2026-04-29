@@ -4,7 +4,7 @@
     
     <!-- Global Style Settings -->
     <key name="icon-size" type="i">
-      <default>30</default>
+      <default>35</default>
       <summary>Icon Size</summary>
       <description>Size of the window control icons in pixels</description>
     </key>
@@ -16,7 +16,7 @@
     </key>
     
     <key name="button-padding" type="i">
-      <default>5</default>
+      <default>2</default>
       <summary>Button Padding</summary>
       <description>Padding inside the button around the icon</description>
     </key>
@@ -28,13 +28,13 @@
     </key>
     
     <key name="button-bg-color" type="s">
-      <default>'#ffffff'</default>
+      <default>'#5e5c64'</default>
       <summary>Button Background Color</summary>
       <description>Default background color for all buttons</description>
     </key>
 
     <key name="header-max-height" type="i">
-      <default>46</default>
+      <default>42</default>
       <summary>Header Max Height</summary>
       <description>Maximum height for headerbar (applies to both GTK 3 and GTK 4)</description>
     </key>
@@ -95,16 +95,19 @@
     <key name="gtk4-maximize-icon-path" type="s"><default>''</default></key>
     <key name="gtk4-maximize-icon-svg" type="s"><default>''</default></key>
     <key name="gtk4-maximize-icon-size" type="i"><default>30</default></key>
+    <key name="gtk4-unmaximize-icon-path" type="s"><default>''</default></key>
+    <key name="gtk4-unmaximize-icon-svg" type="s"><default>''</default></key>
+    <key name="gtk4-unmaximize-icon-size" type="i"><default>30</default></key>
     
     <!-- GTK 3 Specific Settings -->
     <key name="gtk3-min-height" type="i">
-      <default>38</default>
+      <default>36</default>
       <summary>GTK 3 Button Min Height</summary>
       <description>Minimum height for GTK 3 window control buttons</description>
     </key>
     
     <key name="gtk3-min-width" type="i">
-      <default>38</default>
+      <default>36</default>
       <summary>GTK 3 Button Min Width</summary>
       <description>Minimum width for GTK 3 window control buttons</description>
     </key>
@@ -134,25 +137,28 @@
     </key>
     
     <key name="gtk3-icon-scale" type="d">
-      <default>1.6</default>
+      <default>1.5</default>
       <range min="0.5" max="3.0"/>
       <summary>GTK 3 Icon Scale</summary>
       <description>Scale factor for GTK 3 button icons</description>
     </key>
 
     <key name="gtk3-use-custom-icons" type="b">
-      <default>false</default>
+      <default>true</default>
       <summary>Use Custom Icons (GTK 3)</summary>
     </key>
-    <key name="gtk3-close-icon-path" type="s"><default>''</default></key>
+    <key name="gtk3-close-icon-path" type="s"><default>'/home/tb/Documents/GitHub/Gtk-Theme-Customizer/images/close.png'</default></key>
     <key name="gtk3-close-icon-svg" type="s"><default>''</default></key>
-    <key name="gtk3-close-icon-size" type="i"><default>30</default></key>
-    <key name="gtk3-minimize-icon-path" type="s"><default>''</default></key>
+    <key name="gtk3-close-icon-size" type="i"><default>24</default></key>
+    <key name="gtk3-minimize-icon-path" type="s"><default>'/home/tb/Documents/GitHub/Gtk-Theme-Customizer/images/minimize.png'</default></key>
     <key name="gtk3-minimize-icon-svg" type="s"><default>''</default></key>
-    <key name="gtk3-minimize-icon-size" type="i"><default>30</default></key>
-    <key name="gtk3-maximize-icon-path" type="s"><default>''</default></key>
+    <key name="gtk3-minimize-icon-size" type="i"><default>20</default></key>
+    <key name="gtk3-maximize-icon-path" type="s"><default>'/home/tb/Documents/GitHub/Gtk-Theme-Customizer/images/maximize.png'</default></key>
     <key name="gtk3-maximize-icon-svg" type="s"><default>''</default></key>
-    <key name="gtk3-maximize-icon-size" type="i"><default>30</default></key>
+    <key name="gtk3-maximize-icon-size" type="i"><default>20</default></key>
+    <key name="gtk3-unmaximize-icon-path" type="s"><default>''</default></key>
+    <key name="gtk3-unmaximize-icon-svg" type="s"><default>''</default></key>
+    <key name="gtk3-unmaximize-icon-size" type="i"><default>30</default></key>
 
     <!-- Global Custom Icon Settings -->
     <key name="custom-icon-opacity" type="d">
@@ -162,7 +168,7 @@
     </key>
     
     <key name="custom-icon-hover-opacity" type="d">
-      <default>0.8</default>
+      <default>0.55</default>
       <range min="0.0" max="1.0"/>
       <summary>Custom Icon Hover Opacity</summary>
     </key>
@@ -175,11 +181,13 @@
     
     <!-- Button Colors (shared icons colors) -->
     <key name="close-icon-color" type="s"><default>'#FFFFFF'</default></key>
-    <key name="close-hover-icon-color" type="s"><default>'#FFFFFF'</default></key>
-    <key name="minimize-icon-color" type="s"><default>'#000000'</default></key>
-    <key name="minimize-hover-icon-color" type="s"><default>'#000000'</default></key>
+    <key name="close-hover-icon-color" type="s"><default>'#c0bfbc'</default></key>
+    <key name="minimize-icon-color" type="s"><default>'#ffffff'</default></key>
+    <key name="minimize-hover-icon-color" type="s"><default>'#c0bfbc'</default></key>
     <key name="maximize-icon-color" type="s"><default>'#FFFFFF'</default></key>
-    <key name="maximize-hover-icon-color" type="s"><default>'#FFFFFF'</default></key>
+    <key name="maximize-hover-icon-color" type="s"><default>'#c0bfbc'</default></key>
+    <key name="unmaximize-icon-color" type="s"><default>'#FFFFFF'</default></key>
+    <key name="unmaximize-hover-icon-color" type="s"><default>'#FFFFFF'</default></key>
 
     <!-- Deprecated/Removed but kept for schema stability during dev if needed, or removed if clean install -->
     <!-- I'll keep only what's necessary for the current logic -->

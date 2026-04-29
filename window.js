@@ -107,7 +107,7 @@ class GtkThemeCustomizerWindow extends Adw.PreferencesWindow {
         // --- PAGE 2: BUTTON COLORS ---
         const buttonsPage = new Adw.PreferencesPage({ title: _('Icons Color'), icon_name: 'view-grid-symbolic' });
         this.add(buttonsPage);
-        ['close', 'minimize', 'maximize'].forEach(type => {
+        ['close', 'minimize', 'maximize', 'unmaximize'].forEach(type => {
             const group = new Adw.PreferencesGroup({ title: type.charAt(0).toUpperCase() + type.slice(1) + ' Button' });
             buttonsPage.add(group);
             group.add(this._createColorRow(_('Icon Color'), type + '-icon-color'));
@@ -161,7 +161,7 @@ class GtkThemeCustomizerWindow extends Adw.PreferencesWindow {
         this._settings.bind(`gtk${v}-use-custom-icons`, useRow, 'active', Gio.SettingsBindFlags.DEFAULT);
         group.add(useRow);
 
-        ['close', 'minimize', 'maximize'].forEach(type => {
+        ['close', 'minimize', 'maximize', 'unmaximize'].forEach(type => {
             const expander = new Adw.ExpanderRow({ title: type.charAt(0).toUpperCase() + type.slice(1) + ' Icon' });
             group.add(expander);
             
@@ -300,7 +300,7 @@ class GtkThemeCustomizerWindow extends Adw.PreferencesWindow {
             vData.mR = s.get_int(`gtk${v}-margin-right`);
             vData.scale = v === 3 ? s.get_double('gtk3-icon-scale') : 1;
             
-            vData.btns = ['close', 'minimize', 'maximize'].reduce((acc, type) => {
+            vData.btns = ['close', 'minimize', 'maximize', 'unmaximize'].reduce((acc, type) => {
                 acc[type] = {
                     icon: s.get_string(type + '-icon-color'),
                     hIcon: s.get_string(type + '-hover-icon-color'),
@@ -322,9 +322,18 @@ class GtkThemeCustomizerWindow extends Adw.PreferencesWindow {
     _genVersionCss(d) {
         const btnCss = (type, btn) => {
             const isCustom = d.useCustom && (btn.path || btn.svg);
-            const selectors = d.v === 4 
-                ? [`headerbar windowcontrols > button.${type}`, `.titlebar windowcontrols > button.${type}`]
-                : [`headerbar button.titlebutton.${type}`, `.titlebar button.titlebutton.${type}`];
+            
+            let selectors;
+            if (d.v === 4) {
+                const baseClass = type === 'unmaximize' ? 'maximize' : type;
+                selectors = [`headerbar windowcontrols > button.${baseClass}`, `.titlebar windowcontrols > button.${baseClass}`];
+                if (type === 'unmaximize') {
+                    selectors = selectors.map(s => `window.maximized ${s}`);
+                }
+            } else {
+                const baseClass = type === 'unmaximize' ? 'restore' : type;
+                selectors = [`headerbar button.titlebutton.${baseClass}`, `.titlebar button.titlebutton.${baseClass}`];
+            }
             
             const baseSel = selectors.map(s => d.v === 4 ? `${s} image` : s).join(', ');
             const hoverSel = selectors.map(s => d.v === 4 ? `${s}:hover image` : `${s}:hover`).join(', ');
@@ -367,11 +376,12 @@ headerbar button.titlebutton, .titlebar button.titlebutton {
     border-radius: ${d.borderRadius}px; margin: ${d.mT}px ${d.mR}px ${d.mB}px ${d.mL}px;
     min-height: ${d.minH}px; min-width: ${d.minW}px; padding: ${d.buttonPadding}px; background-image: none; border: none; box-shadow: none;
 }
-headerbar button.titlebutton image, .titlebar button.titlebutton image { -gtk-icon-transform: scale(${d.scale}); }
+headerbar button.titlebutton image, .titlebar button.titlebutton image { -gtk-icon-transform: scale(${d.scale}); icon-shadow: none; -gtk-icon-shadow: none; }
 `}
 ${btnCss('close', d.btns.close)}
 ${btnCss('minimize', d.btns.minimize)}
 ${btnCss('maximize', d.btns.maximize)}
+${btnCss('unmaximize', d.btns.unmaximize)}
 `;
     }
 
@@ -386,10 +396,13 @@ ${btnCss('maximize', d.btns.maximize)}
                     'icon-size', 'border-radius', 'button-padding', 'button-bg-color', 'header-max-height', 'titlebar-text-mode',
                     'gtk4-min-height', 'gtk4-min-width', 'gtk4-margin-top', 'gtk4-margin-bottom', 'gtk4-margin-left', 'gtk4-margin-right', 'gtk4-use-custom-icons',
                     'gtk4-close-icon-path', 'gtk4-close-icon-svg', 'gtk4-close-icon-size', 'gtk4-minimize-icon-path', 'gtk4-minimize-icon-svg', 'gtk4-minimize-icon-size', 'gtk4-maximize-icon-path', 'gtk4-maximize-icon-svg', 'gtk4-maximize-icon-size',
+                    'gtk4-unmaximize-icon-path', 'gtk4-unmaximize-icon-svg', 'gtk4-unmaximize-icon-size',
                     'gtk3-min-height', 'gtk3-min-width', 'gtk3-margin-top', 'gtk3-margin-bottom', 'gtk3-margin-left', 'gtk3-margin-right', 'gtk3-icon-scale', 'gtk3-use-custom-icons',
                     'gtk3-close-icon-path', 'gtk3-close-icon-svg', 'gtk3-close-icon-size', 'gtk3-minimize-icon-path', 'gtk3-minimize-icon-svg', 'gtk3-minimize-icon-size', 'gtk3-maximize-icon-path', 'gtk3-maximize-icon-svg', 'gtk3-maximize-icon-size',
+                    'gtk3-unmaximize-icon-path', 'gtk3-unmaximize-icon-svg', 'gtk3-unmaximize-icon-size',
                     'custom-icon-opacity', 'custom-icon-hover-opacity', 'custom-icon-hover-brightness',
-                    'close-icon-color', 'close-hover-icon-color', 'minimize-icon-color', 'minimize-hover-icon-color', 'maximize-icon-color', 'maximize-hover-icon-color'
+                    'close-icon-color', 'close-hover-icon-color', 'minimize-icon-color', 'minimize-hover-icon-color', 'maximize-icon-color', 'maximize-hover-icon-color',
+                    'unmaximize-icon-color', 'unmaximize-hover-icon-color'
                 ];
                 keys.forEach(k => this._settings.reset(k));
             }
