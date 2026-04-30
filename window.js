@@ -124,9 +124,12 @@ class GtkThemeCustomizerWindow extends Adw.PreferencesWindow {
         const opRow = new Adw.SpinRow({ title: _('Default Opacity'), digits: 2, adjustment: new Gtk.Adjustment({ lower: 0, upper: 1, step_increment: 0.05 }) });
         this._settings.bind('custom-icon-opacity', opRow, 'value', Gio.SettingsBindFlags.DEFAULT);
         globalIconsGroup.add(opRow);
-        const hopRow = new Adw.SpinRow({ title: _('Hover Opacity'), digits: 2, adjustment: new Gtk.Adjustment({ lower: 0, upper: 1, step_increment: 0.05 }) });
-        this._settings.bind('custom-icon-hover-opacity', hopRow, 'value', Gio.SettingsBindFlags.DEFAULT);
-        globalIconsGroup.add(hopRow);
+        const hop3Row = new Adw.SpinRow({ title: _('Hover Opacity (GTK 3)'), digits: 2, adjustment: new Gtk.Adjustment({ lower: 0, upper: 1, step_increment: 0.05 }) });
+        this._settings.bind('gtk3-hover-opacity', hop3Row, 'value', Gio.SettingsBindFlags.DEFAULT);
+        globalIconsGroup.add(hop3Row);
+        const hop4Row = new Adw.SpinRow({ title: _('Hover Opacity (GTK 4)'), digits: 2, adjustment: new Gtk.Adjustment({ lower: 0, upper: 1, step_increment: 0.05 }) });
+        this._settings.bind('gtk4-hover-opacity', hop4Row, 'value', Gio.SettingsBindFlags.DEFAULT);
+        globalIconsGroup.add(hop4Row);
 
         this._buildCustomIconsSection(iconsPage, 4, _('GTK 4 Custom Icons'));
         this._buildCustomIconsSection(iconsPage, 3, _('GTK 3 Custom Icons'));
@@ -285,13 +288,13 @@ class GtkThemeCustomizerWindow extends Adw.PreferencesWindow {
             titlebarTextMode: s.get_string('titlebar-text-mode'),
             buttonBgColor: s.get_string('button-bg-color'),
             customIconOpacity: s.get_double('custom-icon-opacity'),
-            customIconHoverOpacity: s.get_double('custom-icon-hover-opacity'),
         };
 
         const getVersionData = (v) => {
             const vData = { ...data };
             vData.v = v;
             vData.useCustom = s.get_boolean(`gtk${v}-use-custom-icons`);
+            vData.hoverOpacity = s.get_double(`gtk${v}-hover-opacity`);
             vData.minH = s.get_int(`gtk${v}-min-height`);
             vData.minW = s.get_int(`gtk${v}-min-width`);
             vData.mT = s.get_int(`gtk${v}-margin-top`);
@@ -335,30 +338,40 @@ class GtkThemeCustomizerWindow extends Adw.PreferencesWindow {
                 selectors = [`headerbar button.titlebutton.${baseClass}`, `.titlebar button.titlebutton.${baseClass}`];
             }
             
-            const baseSel = selectors.map(s => d.v === 4 ? `${s} image` : s).join(', ');
-            const hoverSel = selectors.map(s => d.v === 4 ? `${s}:hover image` : `${s}:hover`).join(', ');
+            const btnBase = selectors.join(', ');
+            const btnHover = selectors.map(s => `${s}:hover`).join(', ');
+            const imgBase = selectors.map(s => `${s} image`).join(', ');
+
+            // For GTK4 standard icons, we target 'image' for color/bg-color
+            // For others, we target 'button'
+            const baseSel = d.v === 4 && !isCustom ? imgBase : btnBase;
+            const hoverSel = d.v === 4 && !isCustom ? selectors.map(s => `${s}:hover image`).join(', ') : btnHover;
 
             if (isCustom) {
                 const bgImg = btn.svg ? `url('data:image/svg+xml;utf8,${this._escapeSvg(btn.svg, btn.icon)}')` : `url('${btn.path}')`;
                 const hBgImg = btn.svg ? `url('data:image/svg+xml;utf8,${this._escapeSvg(btn.svg, btn.hIcon)}')` : `url('${btn.path}')`;
                 const size = d.v === 3 ? `calc(${btn.size}px * ${d.scale})` : `${btn.size}px`;
                 
-                const btnBase = selectors.join(', ');
-                const btnHover = selectors.map(s => `${s}:hover`).join(', ');
-                const imgSel = selectors.map(s => `${s} image`).join(', ');
-
                 return `
 ${btnBase} {
     background-color: ${d.buttonBgColor}; background-image: ${bgImg}; background-size: ${size} ${size};
     background-position: center; background-repeat: no-repeat; opacity: ${d.customIconOpacity};
     color: transparent; border: none; box-shadow: none;
 }
-${imgSel} { opacity: 0; }
-${btnHover} { background-color: ${d.buttonBgColor} !important; background-image: ${hBgImg} !important; opacity: ${d.customIconHoverOpacity}; }`;
+${imgBase} { opacity: 0; }
+${btnHover} { 
+    background-color: ${d.buttonBgColor} !important; 
+    background-image: ${hBgImg} !important; 
+    opacity: ${d.hoverOpacity};
+}`;
             } else {
                 return `
 ${baseSel} { color: ${btn.icon}; background-color: ${d.buttonBgColor}; }
-${hoverSel} { color: ${btn.hIcon}; background-color: ${d.buttonBgColor} !important; }`;
+${btnBase} { opacity: ${d.customIconOpacity}; }
+${hoverSel} { color: ${btn.hIcon}; background-color: ${d.buttonBgColor} !important; }
+${btnHover} { 
+    opacity: ${d.hoverOpacity};
+}`;
             }
         };
 
@@ -400,7 +413,7 @@ ${btnCss('unmaximize', d.btns.unmaximize)}
                     'gtk3-min-height', 'gtk3-min-width', 'gtk3-margin-top', 'gtk3-margin-bottom', 'gtk3-margin-left', 'gtk3-margin-right', 'gtk3-icon-scale', 'gtk3-use-custom-icons',
                     'gtk3-close-icon-path', 'gtk3-close-icon-svg', 'gtk3-close-icon-size', 'gtk3-minimize-icon-path', 'gtk3-minimize-icon-svg', 'gtk3-minimize-icon-size', 'gtk3-maximize-icon-path', 'gtk3-maximize-icon-svg', 'gtk3-maximize-icon-size',
                     'gtk3-unmaximize-icon-path', 'gtk3-unmaximize-icon-svg', 'gtk3-unmaximize-icon-size',
-                    'custom-icon-opacity', 'custom-icon-hover-opacity', 'custom-icon-hover-brightness',
+                    'custom-icon-opacity', 'gtk3-hover-opacity', 'gtk4-hover-opacity',
                     'close-icon-color', 'close-hover-icon-color', 'minimize-icon-color', 'minimize-hover-icon-color', 'maximize-icon-color', 'maximize-hover-icon-color',
                     'unmaximize-icon-color', 'unmaximize-hover-icon-color'
                 ];

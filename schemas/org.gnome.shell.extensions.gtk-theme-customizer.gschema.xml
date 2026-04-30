@@ -167,16 +167,18 @@
       <summary>Custom Icon Opacity</summary>
     </key>
     
-    <key name="custom-icon-hover-opacity" type="d">
+    <key name="gtk3-hover-opacity" type="d">
       <default>0.55</default>
       <range min="0.0" max="1.0"/>
-      <summary>Custom Icon Hover Opacity</summary>
+      <summary>GTK 3 Hover Opacity</summary>
+      <description>Opacity for window control icons on hover in GTK 3 applications</description>
     </key>
     
-    <key name="custom-icon-hover-brightness" type="d">
-      <default>1.0</default>
-      <range min="0.0" max="3.0"/>
-      <summary>Custom Icon Hover Brightness</summary>
+    <key name="gtk4-hover-opacity" type="d">
+      <default>0.55</default>
+      <range min="0.0" max="1.0"/>
+      <summary>GTK 4 Hover Opacity</summary>
+      <description>Opacity for window control icons on hover in GTK 4 applications</description>
     </key>
     
     <!-- Button Colors (shared icons colors) -->
